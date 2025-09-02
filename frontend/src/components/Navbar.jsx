@@ -17,7 +17,7 @@ const Navbar = () => {
           <div className="lg:hidden sm:top-4 left-14 top-5 fixed items-center">
             <Link to="/" className="flex items-center gap-2.5">
               <ShipWheelIcon className="size-7 sm:size-9 text-primary" />
-              <span className="text-xl sm:text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary tracking-wider">
+              <span className="inline-block text-xl sm:text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary tracking-wider">
                 Streamify
               </span>
             </Link>
