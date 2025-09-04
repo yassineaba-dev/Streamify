@@ -21,7 +21,7 @@ export const getAuthUser = async () => {
     return res.data;
   } catch (error) {
     if (error.response?.status === 401) {
-      // Unauthorized, don’t spam console
+      // handle unauthorized silently
       return null;
     }
     console.error("Unexpected error:", error.message);
