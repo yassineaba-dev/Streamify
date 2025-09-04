@@ -26,7 +26,7 @@ const App = () => {
 
   useEffect(() => {
     console.clear();
-  });
+  }, []);
 
   return (
     <div className="h-screen" data-theme={theme}>
