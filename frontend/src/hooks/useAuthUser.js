@@ -1,17 +1,10 @@
-import { useEffect, useState } from "react";
+// src/hooks/useAuthUser.js
 import { useQuery } from "@tanstack/react-query";
 import { getAuthUser } from "../lib/api";
 
-const useAuthUser = () => {
-  const [token, setToken] = useState(
-    typeof window !== "undefined" ? localStorage.getItem("token") : null
-  );
-
-  useEffect(() => {
-    const onStorage = () => setToken(localStorage.getItem("token"));
-    window.addEventListener("storage", onStorage);
-    return () => window.removeEventListener("storage", onStorage);
-  }, []);
+export default function useAuthUser() {
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
   const authUser = useQuery({
     queryKey: ["authUser"],
@@ -20,8 +13,8 @@ const useAuthUser = () => {
     retry: false,
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 5,
-    select: (data) => data?.user,
+    select: (data) => data?.user ?? null,
   });
 
   return { isLoading: authUser.isLoading, authUser: authUser.data ?? null };
-};
+}
