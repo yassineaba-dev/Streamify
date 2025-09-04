@@ -24,19 +24,9 @@ const App = () => {
 
   // Clear console once on mount (safe)
   useEffect(() => {
-    const originalConsole = console.log;
-console.log = (...args) => {
-  // ignore logs that contain "/api/"
-  if (!args.some(arg => typeof arg === "string" && arg.includes("/api/"))) {
-    originalConsole(...args);
-  }
-};
-    console.clear();
-    const originalLog = console.log;
-console.log = (...args) => {
-  if (!args.some(a => a?.includes?.('XHR'))) { 
-    originalLog(...args);
-  }
+    setInterval(() => {
+      console.clear()
+    }, 500)   
 };
   }, []);
 
