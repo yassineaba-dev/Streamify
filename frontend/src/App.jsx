@@ -24,10 +24,7 @@ const App = () => {
 
   // Clear console once on mount (safe)
   useEffect(() => {
-    setInterval(() => {
-      console.clear()
-    }, 500)   
-};
+      console.clear() 
   }, []);
 
   // Show loader while fetching auth state
