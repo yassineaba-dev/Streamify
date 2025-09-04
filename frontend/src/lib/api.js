@@ -20,7 +20,11 @@ export const getAuthUser = async () => {
     const res = await axiosInstance.get("/auth/me");
     return res.data;
   } catch (error) {
-    console.error("Error in getAuthUser:", error.message);
+    if (error.response?.status === 401) {
+      // Unauthorized, don’t spam console
+      return null;
+    }
+    console.error("Unexpected error:", error.message);
     return null;
   }
 };
