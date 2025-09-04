@@ -21,10 +21,10 @@ export const getAuthUser = async () => {
     return res.data;
   } catch (error) {
     if (error.response?.status === 401) {
-      // handle unauthorized silently
+      // User not logged in → handle silently
       return null;
     }
-    console.error("Unexpected error:", error.message);
+    console.error("Unexpected error in getAuthUser:", error.message);
     return null;
   }
 };
