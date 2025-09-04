@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const axiosInstance = axios.create({
   baseURL: `${import.meta.env.VITE_BASE_URL}/api`,
-  withCredentials: true, // ✅ cookies will flow
+  withCredentials: true,
 });
 
 axiosInstance.interceptors.request.use((config) => {
