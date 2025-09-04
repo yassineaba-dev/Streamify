@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom"; // use react-router-dom
+import { Navigate, Route, Routes } from "react-router"; // use react-router-dom
 import { useEffect } from "react";
 import HomePage from "./pages/HomePage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
