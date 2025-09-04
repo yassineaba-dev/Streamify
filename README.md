@@ -4,7 +4,7 @@
 
 ## 🚀 Live Preview
 
-👉 [Click here to view the site](https://streamify-yas.netlify.app)
+👉 [Click here to view the site](https://streamify-ys.netlify.app)
 
 Highlights:
 
