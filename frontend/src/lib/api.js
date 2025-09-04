@@ -14,21 +14,7 @@ export const logout = async () => {
   return response.data;
 };
 
-export const getAuthUser = async () => {
-  try {
-    const res = await axiosInstance.get("/auth/me");
-    return res.data;
-  } catch (error) {
-    const status = error?.response?.status;
-    if (status === 401 || status === 404) {
-      // Not authenticated — return null quietly
-      return null;
-    }
-    // Unexpected errors: log message only (no full object)
-    console.error("Unexpected error in getAuthUser:", error.message);
-    return null;
-  }
-};
+export const getAuthUser = async () => { try { const res = await axiosInstance.get("/auth/me"); if (!response.ok) throw new Error("Request failed"); return res.data; } catch (error) { console.log("Error in getAuthUser:", error); return null; } };
 
 export const completeOnboarding = async (userData) => {
   const response = await axiosInstance.post("/auth/onboarding", userData);
