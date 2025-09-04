@@ -1,20 +1,27 @@
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAuthUser } from "../lib/api";
 
 const useAuthUser = () => {
-  const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+  const [token, setToken] = useState(
+    typeof window !== "undefined" ? localStorage.getItem("token") : null
+  );
+
+  useEffect(() => {
+    const onStorage = () => setToken(localStorage.getItem("token"));
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, []);
 
   const authUser = useQuery({
     queryKey: ["authUser"],
     queryFn: getAuthUser,
-    enabled: !!token,            // <-- only run when token exists
+    enabled: !!token,
     retry: false,
-    refetchOnWindowFocus: false, // optional: avoid extra calls
-    staleTime: 1000 * 60 * 5,    // optional: cache for 5 minutes
-    select: (data) => data?.user // if your API returns { user: ... }
+    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 5,
+    select: (data) => data?.user,
   });
 
   return { isLoading: authUser.isLoading, authUser: authUser.data ?? null };
 };
-
-export default useAuthUser;
