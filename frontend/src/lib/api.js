@@ -18,12 +18,14 @@ export const logout = async () => {
 export const getAuthUser = async () => {
   try {
     const res = await axiosInstance.get("/auth/me");
-    return res.data; // logged-in user data
+    return res.data;
   } catch (error) {
-    if (error.response?.status === 401 || error.response?.status === 404) {
-      // Not logged in yet → handle silently
+    const status = error?.response?.status;
+    if (status === 401 || status === 404) {
+      // Not authenticated — return null quietly
       return null;
     }
+    // Unexpected errors: log message only (no full object)
     console.error("Unexpected error in getAuthUser:", error.message);
     return null;
   }
