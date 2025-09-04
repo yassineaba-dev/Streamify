@@ -25,6 +25,12 @@ const App = () => {
   // Clear console once on mount (safe)
   useEffect(() => {
     console.clear();
+    const originalLog = console.log;
+console.log = (...args) => {
+  if (!args.some(a => a?.includes?.('XHR'))) { 
+    originalLog(...args);
+  }
+};
   }, []);
 
   // Show loader while fetching auth state
